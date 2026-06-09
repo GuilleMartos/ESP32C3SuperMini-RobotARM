@@ -4,7 +4,7 @@
 ![Platform](https://img.shields.io/badge/Platform-ESP32--C3-blue)
 ![Connectivity](https://img.shields.io/badge/Connectivity-BLE_4.2-1182c3)
 
-A professional-grade firmware for controlling a 4-Degrees-of-Freedom (4-DOF) robotic arm using an ESP32-C3 SuperMini and an Adafruit PCA9685 PWM Servo Driver. 
+A professional-grade firmware for controlling a 3-Degrees-of-Freedom robotic arm using an ESP32-C3 SuperMini and an Adafruit PCA9685 PWM Servo Driver. 
 
 This project solves common physical constraints in hobbyist robotics—such as continuous servo drift and mechanical inertia—by implementing **Quadratic Kinematic Compensation** and **Proportional Multi-Axis Interpolation**. It is fully controllable via Bluetooth Low Energy (BLE) and features a dual-bank memory system to record, store, and seamlessly play back complex movement sequences.
 
@@ -26,7 +26,7 @@ You can find the original 3D models and printing instructions on their MakerWorl
 3. **Motors:**
    * 1x Continuous Rotation Servo (Base).
    * 3x Standard 180º Positional Servos (Shoulder, Elbow, Gripper).
-4. **Power Supply:** An independent 5V/6V power supply capable of handling peak stall currents (DO NOT power the servos directly from the ESP32 pins).
+4. **Power Supply:** An independent 5V/6V power supply capable of handling peak stall currents (DO NOT power the servos directly from the ESP32 pins). A 2S1P BMS with 2x 18650 batteries in used in this case [15W UPS 18650 Battery Charger Module](https://es.aliexpress.com/item/1005007183936785.html).
 
 ## 🔌 Pinout & Wiring
 
@@ -53,7 +53,13 @@ Ensure you have the following libraries installed in your Arduino IDE:
 ## 📱 Teach Pendant (Mobile Control)
 To control the arm wirelessly, you can use the **[Serial Bluetooth Terminal](https://play.google.com/store/apps/details?id=de.kai_morich.serial_bluetooth_terminal)** app (available on Android). 
 
-Connect to the BLE device named `ESP32C3SuperMini-RobotARM`. You can configure the app's bottom macro buttons to create a fully functional, touchscreen "Teach Pendant" by mapping the custom characters below:
+Connect to the BLE device named `ESP32C3SuperMini-RobotARM`. You can configure the app's bottom macro buttons to create a fully functional, touchscreen "Teach Pendant".
+
+<p align="center">
+  <img src="assets/BLE_pendant.jpeg" width="350" title="Custom Teach Pendant for Robot Arm" alt="Teach Pendant mobile interface with custom buttons">
+</p>
+
+By mapping the custom characters below to the corresponding buttons as shown in the image, you can control all axes, record positions, and manage memory banks:
 
 ### Main Commands
 * `h` / `H` : **Smart Home** (Secures payload, returns to origin).
